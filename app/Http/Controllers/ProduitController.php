@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProduitController extends Controller
 {
-    public function index()
+    public function home()
     {
         $produits = Produits::all();
         return view('produits.affichage', compact('produits'));
@@ -24,8 +24,12 @@ class ProduitController extends Controller
             'description' => $request->input('description'),
             'prix' => $request->input('prix'),
         ]);
-
         return redirect('/produits');
     }
-
+    public function delete($id)
+    {
+        $produit = Produits::findOrFail($id);
+        $produit->delete();
+        return redirect('/produits')->with('success', 'Produit supprimé avec succès!');
+    }
 }

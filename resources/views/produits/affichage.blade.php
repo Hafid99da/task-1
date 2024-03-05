@@ -33,28 +33,6 @@
         .nav li a:hover {
             background-color: #555;
         }
-
-        .container {
-            margin: 20px;
-        }
-
-        .container h1 {
-            color: #333;
-        }
-
-        .container ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .container ul li {
-            margin-bottom: 10px;
-        }
-
-        .container ul li:last-child {
-            margin-bottom: 0;
-        }
-
         .container a {
             display: block;
             text-decoration: none;
@@ -69,35 +47,34 @@
         .container a:hover {
             background-color: #0056b3;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 20px;
             margin-bottom: 20px;
         }
 
-        thead {
-            background-color: #333;
+        .container-item h2 {
+            margin-top: 0;
+        }
+
+        .container-item button {
+            background-color: #d9534f;
             color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
         }
 
-        thead td {
-            padding: 10px;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tbody td {
-            padding: 10px;
-        }
-
-        tbody td:first-child {
-            font-weight: bold;
-        }
-
-        tbody tr:hover {
-            background-color: #ddd;
+        .container-item button:hover {
+            background-color: #c9302c;
         }
 
     </style>
@@ -107,24 +84,20 @@
         <li><a href="/produits">liste des produit</a></li>
         <li><a href="/produits/ajouter">ajouter un produit</a></li>
     </ul>
+    <h1>Liste des Produits</h1>
     <div class="container">
-        <h1>Liste des Produits</h1>
-        <table>
-            <thead>
-                <tr>
-                    <td>nom</td>
-                    <td>Prix</td>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach($produits as $produit)
-                <tr>
-                <td>{{ $produit->nom }}</td>
-                <td>{{ $produit->prix }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        @foreach ($produits as $produit)
+        <div class = "container-item">
+            <h2>{{ $produit->nom }}</h2>
+            <p>{{ $produit->description }}</p>
+            <p>Prix: {{ $produit->prix }}</p>
+            <form action="{{ route('produits.delete', $produit->id) }}" method="post">
+                @csrf
+                @method("DELETE")
+                <button type="submit">Supprimer</button>
+            </form>
+        </div>
+        @endforeach
         <a href="/produits/ajouter">Ajouter un produit</a>
     </div>
 </body>

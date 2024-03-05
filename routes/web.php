@@ -17,6 +17,7 @@ use App\Http\Controllers\ProduitController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/produits', [ProduitController::class, 'index']);
+Route::get('/produits', [ProduitController::class, 'home']);
 Route::get('/produits/ajouter', [ProduitController::class, 'create']);
 Route::post('/produits/ajouter', [ProduitController::class, 'store']);
+Route::delete('/produits/{id}', [ProduitController::class, 'delete'])->name('produits.delete');
