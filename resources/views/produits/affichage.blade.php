@@ -69,6 +69,37 @@
         .container a:hover {
             background-color: #0056b3;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        thead {
+            background-color: #333;
+            color: #fff;
+        }
+
+        thead td {
+            padding: 10px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody td {
+            padding: 10px;
+        }
+
+        tbody td:first-child {
+            font-weight: bold;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+
     </style>
 </head>
 <body>
@@ -78,11 +109,22 @@
     </ul>
     <div class="container">
         <h1>Liste des Produits</h1>
-        <ul>
+        <table>
+            <thead>
+                <tr>
+                    <td>nom</td>
+                    <td>Prix</td>
+                </tr>
+            </thead>
+            <tbody>
             @foreach($produits as $produit)
-                <li>{{ $produit->nom }} - {{ $produit->prix }}</li>
+                <tr>
+                <td>{{ $produit->nom }}</td>
+                <td>{{ $produit->prix }}</td>
+                </tr>
             @endforeach
-        </ul>
+            </tbody>
+        </table>
         <a href="/produits/ajouter">Ajouter un produit</a>
     </div>
 </body>
