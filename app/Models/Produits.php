@@ -13,4 +13,8 @@ class Produits extends Model
         'description',
         'prix'
     ];
+    public function commentaires()
+    {
+        return $this->hasMany(commentaires::class, "produit_id");
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\commentaires;
 use App\Models\Produits;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class ProduitController extends Controller
     public function home()
     {
         $produits = Produits::all();
+        // $commentaires = commentaires::all();
         return view('produits.affichage', compact('produits'));
     }
     public function create()

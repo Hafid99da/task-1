@@ -91,6 +91,16 @@
             <h2>{{ $produit->nom }}</h2>
             <p>{{ $produit->description }}</p>
             <p>Prix: {{ $produit->prix }}</p>
+            <h3>Commentaires :</h3>
+            <ul>
+                @if(!$produit->commentaires->isEmpty())
+                    @foreach($produit->commentaires as $commentaire)
+                        <li>{{ $commentaire->contenu }}</li>
+                    @endforeach
+                @else
+                    <p>Aucun commentaire pour ce produit.</p>
+                @endif
+            </ul>
             <form action="{{ route('produits.delete', $produit->id) }}" method="post">
                 @csrf
                 @method("DELETE")
