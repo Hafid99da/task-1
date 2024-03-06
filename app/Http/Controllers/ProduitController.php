@@ -11,7 +11,6 @@ class ProduitController extends Controller
     public function home()
     {
         $produits = Produits::all();
-        // $commentaires = commentaires::all();
         return view('produits.affichage', compact('produits'));
     }
     public function create()
